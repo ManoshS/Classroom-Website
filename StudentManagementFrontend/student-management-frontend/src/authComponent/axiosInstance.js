@@ -4,7 +4,7 @@ import { getToken, removeToken } from './auth';
 
 
 const axiosInstance = axios.create({
-  baseURL: 'http://localhost:4000/api/v1',  // Replace with your API URL
+  baseURL: `${process.env.REACT_APP_BACKEND_URL}/api/v1`,  // Replace with your API URL
 });
 
 axiosInstance.interceptors.request.use(

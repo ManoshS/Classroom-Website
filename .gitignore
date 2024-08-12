@@ -2,3 +2,4 @@
 "StudentManagementFrontend/node_modules/" 
 "StudentManagementFrontend/student-management-frontend/node_modules/"
 StudentManagementBackend/.env
+StudentManagementFrontend/student-management-frontend/.env
