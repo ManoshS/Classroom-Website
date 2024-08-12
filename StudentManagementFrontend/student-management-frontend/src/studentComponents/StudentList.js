@@ -8,6 +8,7 @@ const ClassroomStudents = ({ classId }) => {
 
     const [students, setStudents] = useState([]);
     const [classroom_id, setClassroom_id] = useState(1);
+    
     useEffect(() => {
         axiosInstance.get(`/classStudent/classroom-students/${classroom_id}`)
             .then(response => { setStudents(response.data[0]); console.log(response) })

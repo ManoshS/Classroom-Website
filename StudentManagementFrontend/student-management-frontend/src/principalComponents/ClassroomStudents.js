@@ -47,9 +47,12 @@ const ClassroomStudents = ({ classId }) => {
 
 
     const handleDelete = (id) => {
-        
+
         axiosInstance.delete(`/classStudent/classroom/${classroom_id}/students/${id}`)
-            .then(response => console.log("Deleted"))
+            .then(response => {
+                console.log(response);
+                console.log("Deleted");
+            })
             .catch(error => console.error('Error fetching   :', error));
 
         setStudents(students.filter(student => student.id !== id));
