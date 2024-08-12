@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import TeacherStudentList from './TeacherStudentList';
 import TimetableComponent from '../principalComponents/TimetableComponent';
 import StudentListComponent from '../principalComponents/StudentListComponent';
-
+import logout from '../authComponent/logout'
 const TeacherDashboard = () => {
     const [view, setView] = useState('students');
 
@@ -24,6 +24,9 @@ const TeacherDashboard = () => {
         <div className="flex flex-col min-h-screen bg-gray-100">
             <header className="bg-green-600 text-white p-4">
                 <h1 className="text-3xl">Teacher Dashboard</h1>
+                <button className="absolute top-0 right-0 m-4 bg-blue-500 text-white py-2 px-4 rounded" onClick={logout}>
+                    Logout
+                </button>
             </header>
             <nav className="bg-white shadow p-4 flex space-x-4">
                 <button onClick={() => setView('students')} className="text-green-600">Students</button>

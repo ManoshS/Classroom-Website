@@ -20,7 +20,7 @@ router.get('/principal-dashboard', authenticateToken, authorizeRole(['principal'
   res.json({ message: 'Welcome to the principal dashboard' });
 });
 
-router.get('/list-students', authenticateToken, authorizeRole(['principal', 'teacher']), async (req, res) => {
+router.get('/list-students', authenticateToken, authorizeRole(['principal', 'teacher', 'student']), async (req, res) => {
   const students = await getAllStudents();
   console.log(students)
   if (students[0].length === 0)
@@ -28,7 +28,7 @@ router.get('/list-students', authenticateToken, authorizeRole(['principal', 'tea
   else
     res.json(students);
 });
-router.get('/list-teachers', authenticateToken, authorizeRole(['principal']), async (req, res) => {
+router.get('/list-teachers', authenticateToken, authorizeRole(['principal', 'teacher']), async (req, res) => {
   const teachers = await getAllTeachers();
   if (teachers[0].length === 0)
     res.status(404).json({ message: 'No Teachers found' });
@@ -38,13 +38,14 @@ router.get('/list-teachers', authenticateToken, authorizeRole(['principal']), as
 
 router.put('/students/:id', authenticateToken, authorizeRole(['principal', 'teacher']), async (req, res) => {
   const result = await updateStudentById(req.params.id, req.body.username)
+  console.log(req.body);
   if (result.affectedRows === 0) {
     res.status(404).json({ message: 'Student not found' });
   } else {
     res.status(200).json({ message: 'Student updated' });
   }
 });
-router.put('/teachers/:id', authenticateToken, authorizeRole(['principal']), async (req, res) => {
+router.put('/teachers/:id', authenticateToken, authorizeRole(['principal', 'teacher']), async (req, res) => {
   const result = await updateTeacherById(req.params.id, req.body.username)
   if (result.affectedRows === 0) {
     res.status(404).json({ message: 'Teacher not found' });
@@ -69,16 +70,17 @@ router.delete('/teachers/:id', authenticateToken, authorizeRole(['principal']), 
   }
 });
 router.get('/roles/:id', async (req, res) => {
-  r = await getRole(req.params.id);
-  console.log(r)
+  role = await getRole(req.params.id);
+  role = role[0][0].role_id
+  console.log(role)
   let CurrRole = "";
-  if (r == 1) {
-    CurrRole = "Student"
+  if (role == 1) {
+    CurrRole = "student"
   }
-  else if (r == 2)
-    CurrRole = "Teacher"
+  else if (role == 2)
+    CurrRole = "teacher"
   else
-    CurrRole = "Principal"
+    CurrRole = "principal"
   res.json({ role: CurrRole });
 });
 module.exports = router;

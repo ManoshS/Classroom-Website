@@ -13,25 +13,31 @@ const LoginPage = () => {
     e.preventDefault();
     axiosInstance.post('/auth/login', { username, password })
       .then(response => {
-          setToken(response.data.token);  // Store JWT token
-          console.log(response.data.token);
-          axiosInstance.get(`/users/roles/${response.data.id}`)
-              .then(response => {
-                const r= response.data.role
-                  console.log(r)
-                  if (r === "Student")
-                      navigate('/student')
-                  else if (r === "Teacher") 
-                      navigate('/teacher')
-                  else navigate('/')
-                  
-      })
-    .catch(error => console.error('Role error:', error));
-          
+        setToken(response.data.token);  // Store JWT token
+        console.log(response.data.token);
+        axiosInstance.get(`/users/roles/${response.data.id}`)
+          .then(response => {
+            const roleName = response.data.role;
+            console.log(roleName)
+            if (roleName === "student")
+              navigate('/student')
+            else if (roleName === "teacher")
+              navigate('/teacher')
+            else navigate('/')
 
-          // Redirect to a protected route
+          })
+          .catch(error => {
+            console.error('Role error:', error);
+            alert("Role")
+          });
+
+
+        // Redirect to a protected route
       })
-      .catch(error => console.error('Login error:', error));
+      .catch(error => {
+        console.error('Login error:', error);
+        alert("Invalid Username or Password");
+      });
   };
   return (
     <div className="flex items-center justify-center h-screen">

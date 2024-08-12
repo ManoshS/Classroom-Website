@@ -1,20 +1,31 @@
 // src/components/Register.jsx
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-
-const Register = () => {
-    const [formData, setFormData] = useState({ username: '', password: '', role: 'student' });
+import { Link, useNavigate } from 'react-router-dom';
+import axiosInstance from './axiosInstance';
+const Register = ({ role }) => {
+    let roleName = ""
+    if (role === "1")
+        roleName = "student"
+    else if (role === "2")
+        roleName = "teacher"
+    else if (role === "3") roleName = "principal"
+    const [formData, setFormData] = useState({ username: '', password: '', role_name: roleName });
     const navigate = useNavigate();
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Handle form submission logic here
+
+        axiosInstance.post(`/auth/register`, formData)
+            .then(response => console.log("Created "))
+            .catch(error => console.error('Error Creating User:', error));
+
         console.log(formData);
-        navigate('/login');
+        navigate('/');
     };
 
     return (
@@ -43,23 +54,14 @@ const Register = () => {
                         required
                     />
                 </div>
-                <div className="mb-4">
-                    <label className="block text-gray-700">Role</label>
-                    <select
-                        name="role"
-                        onChange={handleChange}
-                        value={formData.role}
-                        className="w-full p-2 border border-gray-300 rounded mt-2"
-                    >
-                        <option value="student">Student</option>
-                        <option value="teacher">Teacher</option>
-                        <option value="principal">Principal</option>
-                    </select>
-                </div>
+
                 <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded">
                     Register
                 </button>
+                <br></br>
+                <Link className='block bg-green-500  text-white py-2 rounded' to="../">Go to Dashboard</Link>
             </form>
+
         </div>
     );
 };

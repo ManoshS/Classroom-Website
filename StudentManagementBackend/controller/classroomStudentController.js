@@ -13,7 +13,8 @@ exports.addStudentToClassroom = async (req, res) => {
 
 exports.removeStudentFromClassroom = async (req, res) => {
     
-    const { classroom_id, student_id } = req.body;
+    const classroom_id = req.params.classroom_id;
+    const student_id = req.params.student_id;
     await ClassroomStudent.removeStudentFromClassroom(classroom_id, student_id, (err, result) => {
         if (err) throw err;
         res.status(200).json({ message: 'Student removed from classroom' });
@@ -27,7 +28,7 @@ exports.getStudentsByClassroomId = async (req, res) => {
         if (results.length === 0) {
             res.status(404).json({ message: 'Classroom not found' });
         } else {
-            res.status(200).json(results[0]);
+            res.status(200).json(results);
         }
 
     } catch (err) {

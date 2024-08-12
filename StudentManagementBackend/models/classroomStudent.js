@@ -15,7 +15,7 @@ const ClassroomStudent = {
 
     findStudentsByClassroomId: async (classroom_id) => {
         const query = `
-            SELECT s.username FROM users s
+            SELECT s.username , s.id FROM users s
             JOIN Classroom_Student cs ON s.id = cs.student_id
             WHERE cs.classroom_id = ?`;
         const [result] = await db.query(query, [classroom_id]);

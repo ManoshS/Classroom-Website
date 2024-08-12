@@ -15,7 +15,12 @@ const authenticateToken = (req, res, next) => {
 const authorizeRole = (roles) => {
 
   return async (req, res, next) => {
+
     role = await getRoleById(req.user.id)
+    
+    if (!role || role.length === 0 || !role[0] || role[0].length === 0) {
+      return res.status(403).json({ message: 'Role not found or unauthorized' });
+    }
     if (!roles.includes(role[0][0].role_name)) {
       return res.status(403).json({ message: 'Access denied' });
     }

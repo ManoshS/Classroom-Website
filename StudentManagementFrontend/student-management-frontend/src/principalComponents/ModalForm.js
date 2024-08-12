@@ -38,18 +38,36 @@ const ModalForm = ({ entity, onSave, onClose, type }) => {
                                 required
                             />
 
-                            <label className="block text-gray-700">Password</label>
-                            <input
-                                type="password"
-                                name="password"
-                                value={formData.password || ''}
-                                onChange={handleChange}
-                                className="w-full p-2 border border-gray-300 rounded mt-2"
-                                required
-                            />
+
                         </div>
                     ) : null}
-                    {type === 'Classroom' || type === 'Timetable' ? (
+                    {(type === 'classroomStudents') ? (
+                    <div>
+                    <label className="block text-gray-700">ClassRoom Id</label>
+                    <input
+                        type="text"
+                        name="classroom_id"
+                        value={formData.classroom_id || ''}
+                        onChange={handleChange}
+                        className="w-full p-2 border border-gray-300 rounded mt-2"
+                        required
+                            />
+                            
+                        <label className="block text-gray-700">Student Id</label>
+                    <input
+                        type="text"
+                        name="student_id"
+                        value={formData.student_id || ''}
+                        onChange={handleChange}
+                        className="w-full p-2 border border-gray-300 rounded mt-2"
+                        required
+                    />
+                    </div>
+                        
+                        
+                        
+                    ): null}
+                    {type === 'Classroom' ? (
                         <div>
                             <label className="block text-gray-700">Teacher Id</label>
                             <input
@@ -95,39 +113,153 @@ const ModalForm = ({ entity, onSave, onClose, type }) => {
                     </div>) : null}
                     {type === 'Timetable' ? (
                         <>
-                            <div>
-                                <label className="block text-gray-700">Day</label>
-                                <input
-                                    type="text"
-                                    name="day"
-                                    value={formData.day || ''}
-                                    onChange={handleChange}
-                                    className="w-full p-2 border border-gray-300 rounded mt-2"
-                                    required
-                                />
-                            </div>
-                            <div>
-                                <label className="block text-gray-700">Time</label>
-                                <input
-                                    type="text"
-                                    name="time"
-                                    value={formData.time || ''}
-                                    onChange={handleChange}
-                                    className="w-full p-2 border border-gray-300 rounded mt-2"
-                                    required
-                                />
-                            </div>
-                            <div>
-                                <label className="block text-gray-700">Classroom</label>
-                                <input
-                                    type="text"
-                                    name="classroom"
-                                    value={formData.classroom || ''}
-                                    onChange={handleChange}
-                                    className="w-full p-2 border border-gray-300 rounded mt-2"
-                                    required
-                                />
-                            </div>
+
+
+                            ClassRoom ID : -
+                            <input
+                                type="text"
+                                name="classroom_id"
+                                value={formData.classroom_id || ''}
+                                onChange={handleChange}
+                                className=" p-2 border border-gray-300 rounded mt-2"
+                                required
+                            />
+                            <br />
+
+                            <label className=" text-gray-700">Day : -</label>
+                            <input
+                                type="text"
+                                name="day_of_week"
+                                value={formData.day_of_week || ''}
+                                onChange={handleChange}
+                                className=" p-2 border border-gray-300 rounded mt-2"
+                                required
+                            />
+                            <br />
+                            <label className=" text-gray-700">Class1 Start Time - Class1 End Time</label>
+                            <input
+                                type="time"
+                                name="class1_start_time"
+                                value={formData.class1_start_time || ''}
+                                onChange={handleChange}
+                                className=" p-2 border border-gray-300 rounded mt-2"
+                                required
+                            />
+
+                            {/* <label className="block text-gray-700"></label> */}-to-
+                            <input
+                                type="time"
+                                name="class1_end_time"
+                                value={formData.class1_end_time || ''}
+                                onChange={handleChange}
+                                className=" p-2 border border-gray-300 rounded mt-2"
+                                required
+                            />
+
+                            {/* <label className="block text-gray-700">Subject1 Name</label> */}
+                            <br />
+                            Subject1 Name :-
+                            <input
+                                type="text"
+                                name="sub1"
+                                value={formData.sub1 || ''}
+                                onChange={handleChange}
+                                className=" p-2 border border-gray-300 rounded mt-2"
+                                required
+                            />
+
+                            <label className="block text-gray-700">Class2 Start Time - Class2 End Time</label>
+                            <input
+                                type="time"
+                                name="class2_start_time"
+                                value={formData.class2_start_time || ''}
+                                onChange={handleChange}
+                                className="p-2 border border-gray-300 rounded mt-2"
+                                required
+                            />
+
+                            {/* <label className="block text-gray-700">Class2 End Time</label> */}-to-
+                            <input
+                                type="time"
+                                name="class2_end_time"
+                                value={formData.class2_end_time || ''}
+                                onChange={handleChange}
+                                className="p-2 border border-gray-300 rounded mt-2"
+                                required
+                            />
+
+                            {/* <label className="block text-gray-700">Subject2 Name</label> */}<br />
+                            Subject2 Name :-
+                            <input
+                                type="text"
+                                name="sub2"
+                                value={formData.sub2 || ''}
+                                onChange={handleChange}
+                                className="p-2 border border-gray-300 rounded mt-2"
+                                required
+                            />
+
+                            <label className="block text-gray-700">Class3 Start Time - Class3 End Time</label>
+                            <input
+                                type="time"
+                                name="class3_start_time"
+                                value={formData.class3_start_time || ''}
+                                onChange={handleChange}
+                                className="p-2 border border-gray-300 rounded mt-2"
+                                required
+                            />
+
+                            {/* <label className="block text-gray-700">Class3 End Time</label> */}-to-
+                            <input
+                                type="time"
+                                name="class3_end_time"
+                                value={formData.class3_end_time || ''}
+                                onChange={handleChange}
+                                className="p-2 border border-gray-300 rounded mt-2"
+                                required
+                            />
+                            <br />
+                            {/* <label className=" text-gray-700">Subject3 Name</label> */}
+                            Subject3 Name :-
+                            <input
+                                type="text"
+                                name="sub3"
+                                value={formData.sub3 || ''}
+                                onChange={handleChange}
+                                className=" p-2 border border-gray-300 rounded mt-2"
+                                required
+                            />
+
+                            <label className="block text-gray-700">Class4 Start Time - Class4 Start Time</label>
+                            <input
+                                type="time"
+                                name="class4_start_time"
+                                value={formData.class4_start_time || ''}
+                                onChange={handleChange}
+                                className=" p-2 border border-gray-300 rounded mt-2"
+                                required
+                            />
+
+                            {/* <label className="block text-gray-700">Class4 End Time</label> */}-to-
+                            <input
+                                type="time"
+                                name="class4_end_time"
+                                value={formData.class4_end_time || ''}
+                                onChange={handleChange}
+                                className=" p-2 border border-gray-300 rounded mt-2"
+                                required
+                            />
+                            <br></br>
+                            <label className=" text-gray-700">Subject4 Name :-</label>
+                            <input
+                                type="text"
+                                name="sub4"
+                                value={formData.sub4 || ''}
+                                onChange={handleChange}
+                                className=" p-2 border border-gray-300 rounded mt-2"
+                                required
+                            />
+
                         </>
                     ) : null}
                     <div className="flex justify-end space-x-4">

@@ -24,7 +24,7 @@ const Timetable = {
         const query = `UPDATE Timetable SET classroom_id = ?, day_of_week = ?, class1_start_time = ?, class1_end_time = ?,sub1 = ?,
         class2_start_time = ?, class2_end_time = ?,sub2 = ?,
         class3_start_time = ?, class3_end_time = ?,sub3 = ?,
-        class4_start_time = ?, class4_end_time = ?,sub4 = ? , WHERE timetable_id = ?`;
+        class4_start_time = ?, class4_end_time = ?,sub4 = ?  WHERE timetable_id = ?`;
         const [result] = await db.query(query, [timetable.classroom_id, timetable.day_of_week,
         timetable.class1_start_time, timetable.class1_end_time, timetable.sub1,
         timetable.class2_start_time, timetable.class2_end_time, timetable.sub2,
