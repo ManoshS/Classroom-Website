@@ -2,7 +2,7 @@ const db = require('../config/db');
 
 const Timetable = {
     create: async (timetable) => {
-        const query = `INSERT INTO Timetable (classroom_id, day_of_week, class1_start_time, class1_end_time,sub1,
+        const query = `INSERT INTO timetable (classroom_id, day_of_week, class1_start_time, class1_end_time,sub1,
        class2_start_time, class2_end_time,sub2,
        class3_start_time, class3_end_time,sub3,
        class4_start_time, class4_end_time,sub4 ) VALUES (?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?)`;
@@ -15,13 +15,13 @@ const Timetable = {
     },
 
     findAllByClassroomId: async (classroom_id) => {
-        const query = `SELECT * FROM Timetable WHERE classroom_id = ?`;
+        const query = `SELECT * FROM timetable WHERE classroom_id = ?`;
         const [result] = await db.query(query, [classroom_id]);
         return result;
     },
 
     update: async (id, timetable) => {
-        const query = `UPDATE Timetable SET classroom_id = ?, day_of_week = ?, class1_start_time = ?, class1_end_time = ?,sub1 = ?,
+        const query = `UPDATE timetable SET classroom_id = ?, day_of_week = ?, class1_start_time = ?, class1_end_time = ?,sub1 = ?,
         class2_start_time = ?, class2_end_time = ?,sub2 = ?,
         class3_start_time = ?, class3_end_time = ?,sub3 = ?,
         class4_start_time = ?, class4_end_time = ?,sub4 = ?  WHERE timetable_id = ?`;
@@ -34,7 +34,7 @@ const Timetable = {
     },
 
     delete: async (id) => {
-        const query = `DELETE FROM Timetable WHERE timetable_id = ?`;
+        const query = `DELETE FROM timetable WHERE timetable_id = ?`;
         const [result] = await db.query(query, [id]);
         return result;
     }
