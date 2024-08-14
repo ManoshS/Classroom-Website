@@ -18,7 +18,7 @@ exports.getTimetablesByClassroomId = async (req, res) => {
         if (result.length === 0) {
             res.status(404).json({ message: 'Classroom not found' });
         } else {
-            res.status(200).json(result[0]);
+            res.status(200).json(result);
         }
     } catch (err) {
         res.status(500).json({ error: err.message });
